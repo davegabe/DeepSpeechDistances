@@ -2,22 +2,19 @@
 
 This repo provides a code for estimation of **DeepSpeech Distances**, new evaluation metrics for neural speech synthesis.
 
-### **Details**
+## Setup
+```
+conda env create -f environment.yml
+conda activate DSD-TF1
+```
 
-The computation involves estimating Fréchet and Kernel distances between high-level features of the reference and the examined samples extracted from hidden representation of [NVIDIA's DeepSpeech2](https://nvidia.github.io/OpenSeq2Seq/html/speech-recognition/deepspeech2.html) speech recognition model.
+## Usage
+Create "Audio/" directory inside the project and insert all audio files with following structure "Audio/{conversion_name}/{auido_type}/*.wav" then run the Jupyter file.
 
-We propose four distances:
-
-
-*   *Fréchet DeepSpeech Distance* (*FDSD*, based on FID, see [2])
-*   *Kernel DeepSpeech Distance* (*KDSD*, based on KID, see [3])
-*   *conditional Fréchet DeepSpeech Distance* (*cFDSD*),
-*   *conditional Kernel DeepSpeech Distance* (*cKDSD*).
-
-The conditional distances compare samples with the same conditioning (e.g. text) and asses conditional quality of the audio. The uncoditional ones compare random samples from two distributions and asses general quality of audio. For more details, see [1].
-
-### **Usage**
-Install conda environment form environment.yml and run the Jupyter file.
+## Major changes for this fork
+This fork is to calculate Fréchet DeepSpeech Distance and Kernel DeepSpeech Distance only of a selected data path.
+Added environment file to run it locally.
+TODO: Jupyter for Google Colab (the old one from the original repo doesn't work anymore as it's for tensorflow 1.x)
 
 ### **Notes**
 We provide a tensorflow meta graph file for DeepSpeech2 based on the original one available with the [checkpoint](https://nvidia.github.io/OpenSeq2Seq/html/speech-recognition/deepspeech2.html). The provided file differs from the original only in the lack of map-reduce ops defined by horovod library; therefore the resulting model is equivalent to the original.
